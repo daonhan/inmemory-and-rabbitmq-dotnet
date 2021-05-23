@@ -8,7 +8,7 @@ using Supply.Infra.Data.Context;
 
 namespace Supply.Infra.Data.Migrations
 {
-    [DbContext(typeof(SupplyContext))]
+    [DbContext(typeof(SupplyDataContext))]
     partial class SupplyContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

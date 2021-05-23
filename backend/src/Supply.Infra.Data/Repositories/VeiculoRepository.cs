@@ -11,9 +11,9 @@ namespace Supply.Infra.Data.Repositories
 {
     public class VeiculoRepository : IVeiculoRepository
     {
-        private readonly SupplyContext _supplyContext;
+        private readonly SupplyDataContext _supplyContext;
 
-        public VeiculoRepository(SupplyContext supplyContext)
+        public VeiculoRepository(SupplyDataContext supplyContext)
         {
             _supplyContext = supplyContext;
         }

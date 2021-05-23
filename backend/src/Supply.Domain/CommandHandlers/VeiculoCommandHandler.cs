@@ -7,6 +7,7 @@ using Supply.Domain.Core.Domain;
 using Supply.Domain.Core.Mediator;
 using Supply.Domain.Core.Messaging;
 using Supply.Domain.Entities;
+using Supply.Domain.Events.VeiculoEvents;
 using Supply.Domain.Interfaces;
 
 namespace Supply.Domain.CommandHandlers
@@ -41,7 +42,12 @@ namespace Supply.Domain.CommandHandlers
 
             _veiculoRepository.Add(veiculo);
 
-            return await Commit(_veiculoRepository.UnitOfWork);
+            if (await Commit(_veiculoRepository.UnitOfWork))
+            {
+                await _mediatorHandler.PublishEvent(new VeiculoAddedEvent(veiculo.Id));
+            }
+
+            return ValidationResult;
         }
     }
 }

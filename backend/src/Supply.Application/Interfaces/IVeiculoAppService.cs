@@ -8,8 +8,8 @@ namespace Supply.Application.Interfaces
 {
     public interface IVeiculoAppService
     {
-        Task<IEnumerable<VeiculoDTO>> GetAll();
-        Task<VeiculoDTO> GetById(Guid id);
+        IEnumerable<VeiculoDTO> GetAll();
+        VeiculoDTO GetById(Guid id);
 
         Task<ValidationResult> Add(AddVeiculoDTO addVeiculoDTO);
     }

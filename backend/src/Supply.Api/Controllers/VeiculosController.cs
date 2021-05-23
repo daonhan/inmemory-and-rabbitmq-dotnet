@@ -17,15 +17,15 @@ namespace Supply.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<VeiculoDTO>> Get()
+        public IEnumerable<VeiculoDTO> Get()
         {
-            return await _veiculoAppService.GetAll();
+            return _veiculoAppService.GetAll();
         }
 
         [HttpGet("{id:guid}")]
-        public async Task<VeiculoDTO> Get(Guid id)
+        public VeiculoDTO Get(Guid id)
         {
-            return await _veiculoAppService.GetById(id);
+            return _veiculoAppService.GetById(id);
         }
 
         [HttpPost]

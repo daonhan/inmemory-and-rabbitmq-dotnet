@@ -7,19 +7,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CA86665C-E3E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C7118CF3-A598-428D-B841-9EB0B91A27E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supply.Domain", "src\Supply.Domain\Supply.Domain.csproj", "{44E47820-C680-4C71-9498-8C0DB3F22D26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Supply.Domain", "src\Supply.Domain\Supply.Domain.csproj", "{44E47820-C680-4C71-9498-8C0DB3F22D26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supply.Infra.CrossCutting.IoC", "src\Supply.Infra.CrossCutting.IoC\Supply.Infra.CrossCutting.IoC.csproj", "{DF7B5CB8-A3C8-4AE4-A7C1-F9AF5349F011}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Supply.Infra.CrossCutting.IoC", "src\Supply.Infra.CrossCutting.IoC\Supply.Infra.CrossCutting.IoC.csproj", "{DF7B5CB8-A3C8-4AE4-A7C1-F9AF5349F011}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supply.Application", "src\Supply.Application\Supply.Application.csproj", "{65DE6989-EA79-4C17-80DF-26F7A3E0E092}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Supply.Application", "src\Supply.Application\Supply.Application.csproj", "{65DE6989-EA79-4C17-80DF-26F7A3E0E092}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supply.Infra.Data", "src\Supply.Infra.Data\Supply.Infra.Data.csproj", "{68A23B05-6735-43E1-8F90-6D769CDF58AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Supply.Infra.Data", "src\Supply.Infra.Data\Supply.Infra.Data.csproj", "{68A23B05-6735-43E1-8F90-6D769CDF58AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supply.Domain.Core", "src\Supply.Domain.Core\Supply.Domain.Core.csproj", "{970ECD4C-BB40-4025-B521-834EB0ED35D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Supply.Domain.Core", "src\Supply.Domain.Core\Supply.Domain.Core.csproj", "{970ECD4C-BB40-4025-B521-834EB0ED35D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supply.Api", "src\Supply.Api\Supply.Api.csproj", "{FF2CBD34-409D-4CB1-A434-A7964853E581}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Supply.Api", "src\Supply.Api\Supply.Api.csproj", "{FF2CBD34-409D-4CB1-A434-A7964853E581}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supply.Domain.Tests", "tests\Supply.Domain.Tests\Supply.Domain.Tests.csproj", "{B660CD6D-B786-43FD-A697-1C42910E9FB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Supply.Domain.Tests", "tests\Supply.Domain.Tests\Supply.Domain.Tests.csproj", "{B660CD6D-B786-43FD-A697-1C42910E9FB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supply.Caching", "src\Supply.Caching\Supply.Caching.csproj", "{FA46C477-1F2A-421B-BC71-479200C401F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{B660CD6D-B786-43FD-A697-1C42910E9FB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B660CD6D-B786-43FD-A697-1C42910E9FB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B660CD6D-B786-43FD-A697-1C42910E9FB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA46C477-1F2A-421B-BC71-479200C401F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA46C477-1F2A-421B-BC71-479200C401F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA46C477-1F2A-421B-BC71-479200C401F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA46C477-1F2A-421B-BC71-479200C401F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{970ECD4C-BB40-4025-B521-834EB0ED35D1} = {CA86665C-E3E5-4063-9E52-700EB95003FF}
 		{FF2CBD34-409D-4CB1-A434-A7964853E581} = {CA86665C-E3E5-4063-9E52-700EB95003FF}
 		{B660CD6D-B786-43FD-A697-1C42910E9FB5} = {C7118CF3-A598-428D-B841-9EB0B91A27E8}
+		{FA46C477-1F2A-421B-BC71-479200C401F2} = {CA86665C-E3E5-4063-9E52-700EB95003FF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F8274845-9C79-43A1-BEF5-E3F13D35CC5F}

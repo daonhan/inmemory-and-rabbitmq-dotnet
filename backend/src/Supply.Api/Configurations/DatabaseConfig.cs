@@ -12,7 +12,7 @@ namespace Supply.Api.Configurations
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
-            services.AddDbContext<SupplyContext>(options =>
+            services.AddDbContext<SupplyDataContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
     }

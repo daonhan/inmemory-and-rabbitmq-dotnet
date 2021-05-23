@@ -6,11 +6,11 @@ using Supply.Infra.Data.Mappings;
 
 namespace Supply.Infra.Data.Context
 {
-    public class SupplyContext : DbContext, IUnitOfWork
+    public class SupplyDataContext : DbContext, IUnitOfWork
     {
         public DbSet<Veiculo> Veiculos { get; set; }
 
-        public SupplyContext(DbContextOptions<SupplyContext> options) : base(options) { }
+        public SupplyDataContext(DbContextOptions<SupplyDataContext> options) : base(options) { }
 
         public async Task<bool> Commit()
         {

@@ -9,7 +9,7 @@ using Supply.Infra.Data.Context;
 
 namespace Supply.Infra.Data.Migrations
 {
-    [DbContext(typeof(SupplyContext))]
+    [DbContext(typeof(SupplyDataContext))]
     [Migration("20210521011927_Veiculo")]
     partial class Veiculo
     {

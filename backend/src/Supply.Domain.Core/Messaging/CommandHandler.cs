@@ -19,11 +19,15 @@ namespace Supply.Domain.Core.Messaging
             ValidationResult.Errors.Add(new ValidationFailure(string.Empty, message));
         }
 
-        protected async Task<ValidationResult> Commit(IUnitOfWork uow)
+        protected async Task<bool> Commit(IUnitOfWork uow)
         {
-            if (!await uow.Commit()) AddError(DomainMessages.CommitFailed.Message);
+            if (!await uow.Commit())
+            {
+                AddError(DomainMessages.CommitFailed.Message);
+                return false;
+            }
 
-            return ValidationResult;
+            return true;
         }
     }
 }

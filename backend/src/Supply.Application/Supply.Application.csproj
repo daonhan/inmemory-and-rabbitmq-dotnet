@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Supply.Caching\Supply.Caching.csproj" />
     <ProjectReference Include="..\Supply.Domain\Supply.Domain.csproj" />
   </ItemGroup>
 
