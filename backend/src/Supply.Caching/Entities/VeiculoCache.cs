@@ -6,14 +6,14 @@ namespace Supply.Caching.Entities
 {
     public class VeiculoCache
     {
-        [BsonRepresentation(BsonType.ObjectId)]
-        public Guid Id { get; set; }
+        [BsonId]
+        public string Id { get; set; }
 
         public string Placa { get; set; }
 
         public VeiculoCache(Guid id, string placa)
         {
-            Id = id;
+            Id = id.ToString();
             Placa = placa;
         }
     }

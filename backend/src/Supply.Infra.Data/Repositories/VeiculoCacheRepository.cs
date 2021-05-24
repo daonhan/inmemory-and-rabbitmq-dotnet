@@ -23,7 +23,7 @@ namespace Supply.Infra.Data.Repositories
 
         public VeiculoCache GetById(Guid id)
         {
-            return _supplyCacheContext.VeiculosCache.Find(e => e.Id == id).SingleOrDefault();
+            return _supplyCacheContext.VeiculosCache.Find(e => e.Id == id.ToString()).SingleOrDefault();
         }
 
         public void Add(VeiculoCache veiculoCache)

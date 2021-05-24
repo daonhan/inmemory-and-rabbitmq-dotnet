@@ -35,6 +35,7 @@ namespace Supply.Infra.CrossCutting.IoC
             services.AddScoped<IVeiculoRepository, VeiculoRepository>();
             services.AddScoped<IVeiculoCacheRepository, VeiculoCacheRepository>();
             services.AddScoped<SupplyDataContext>();
+            services.AddScoped<SupplyCacheContext>();
         }
     }
 }
