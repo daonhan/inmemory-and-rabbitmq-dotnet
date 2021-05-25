@@ -1,14 +1,15 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using MediatR;
 using Supply.Domain.Commands.VeiculoCommands;
 using Supply.Domain.Core.Domain;
 using Supply.Domain.Core.Mediator;
+using Supply.Domain.Core.MessageBroker;
 using Supply.Domain.Core.Messaging;
 using Supply.Domain.Entities;
 using Supply.Domain.Events.VeiculoEvents;
 using Supply.Domain.Interfaces;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Supply.Domain.CommandHandlers
 {
@@ -16,12 +17,15 @@ namespace Supply.Domain.CommandHandlers
         IRequestHandler<AddVeiculoCommand, ValidationResult>
     {
         private readonly IMediatorHandler _mediatorHandler;
+        private readonly IMessageBrokerBus _messageBrokerBus;
         private readonly IVeiculoRepository _veiculoRepository;
 
-        public VeiculoCommandHandler(IMediatorHandler mediatorHandler,
+        public VeiculoCommandHandler(IMediatorHandler mediatorHandler, 
+                                     IMessageBrokerBus messageBrokerBus, 
                                      IVeiculoRepository veiculoRepository)
         {
             _mediatorHandler = mediatorHandler;
+            _messageBrokerBus = messageBrokerBus;
             _veiculoRepository = veiculoRepository;
         }
 
@@ -44,7 +48,7 @@ namespace Supply.Domain.CommandHandlers
 
             if (await Commit(_veiculoRepository.UnitOfWork))
             {
-                await _mediatorHandler.PublishEvent(new VeiculoAddedEvent(veiculo.Id));
+                await _messageBrokerBus.PublishEvent(new VeiculoAddedEvent(veiculo.Id));
             }
 
             return ValidationResult;

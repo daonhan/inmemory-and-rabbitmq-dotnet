@@ -25,6 +25,9 @@ namespace Supply.Api
             // Setting DBContexts
             services.AddDatabaseConfiguration(Configuration);
 
+            // Setting RabbitMq
+            services.AddRabbitMqConfiguration(Configuration);
+
             // Setting AutoMapper
             services.AddAutoMapperConfiguration();
 

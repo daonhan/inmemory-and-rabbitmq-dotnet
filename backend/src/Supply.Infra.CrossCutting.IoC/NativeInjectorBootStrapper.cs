@@ -7,6 +7,7 @@ using Supply.Caching.Interfaces;
 using Supply.Domain.CommandHandlers;
 using Supply.Domain.Commands.VeiculoCommands;
 using Supply.Domain.Core.Mediator;
+using Supply.Domain.Core.MessageBroker;
 using Supply.Domain.Events.VeiculoEvents;
 using Supply.Domain.Interfaces;
 using Supply.Infra.Data.Context;
@@ -24,6 +25,9 @@ namespace Supply.Infra.CrossCutting.IoC
 
             // Domain Bus (Mediator)
             services.AddScoped<IMediatorHandler, MediatorHandler>();
+
+            // Domain Bus (MessageBroker)
+            services.AddScoped<IMessageBrokerBus, MessageBrokerBus>();
 
             // Domain - Commands
             services.AddScoped<IRequestHandler<AddVeiculoCommand, ValidationResult>, VeiculoCommandHandler>();
