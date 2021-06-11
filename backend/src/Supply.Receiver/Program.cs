@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 using Supply.Receiver.Configurations;
+using System;
 using System.Reflection;
 
 namespace Supply.Receiver
@@ -11,16 +13,33 @@ namespace Supply.Receiver
     {
         public static void Main(string[] args)
         {
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", true, true)
-                .AddJsonFile($"appsettings.Development.json", true, true)
-                .Build();
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .CreateLogger();
 
-            CreateHostBuilder(args, config).Build().Run();
+            try
+            {
+                var config = new ConfigurationBuilder()
+                    .AddJsonFile("appsettings.json", true, true)
+                    .AddJsonFile($"appsettings.Development.json", true, true)
+                    .Build();
+
+                CreateHostBuilder(args, config).Build().Run();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Application start-up failed");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args, IConfiguration configuration) =>
             Host.CreateDefaultBuilder(args)
+                .UseSerilog()
                 .ConfigureServices((hostContext, services) =>
                 {
                     // Settings Receiver

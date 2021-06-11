@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using Serilog;
 using Supply.Domain.Core.Mediator;
 using Supply.Domain.Core.MessageBroker.Options;
 using Supply.Domain.Core.Messaging;
@@ -19,6 +21,8 @@ namespace Supply.Receiver
     public class Receiver : BackgroundService
     {
         private readonly IEnumerable<QueueInfo> _queueList;
+        private readonly IMediatorHandler _mediatorHandler;
+        private readonly ILogger<Receiver> _logger;
 
         private readonly string _hostName;
         private readonly string _userName;
@@ -27,12 +31,12 @@ namespace Supply.Receiver
         private IConnection _connection;
         private IModel _channel;
 
-        private readonly IMediatorHandler _mediatorHandler;
-
         public Receiver(IOptions<RabbitMqOptions> rabbitMqOptions,
-                        IMediatorHandler mediatorHandler)
+                        IMediatorHandler mediatorHandler, 
+                        ILogger<Receiver> logger)
         {
             _mediatorHandler = mediatorHandler;
+            _logger = logger;
 
             _queueList = new List<QueueInfo>()
             {
@@ -91,7 +95,7 @@ namespace Supply.Receiver
                 return;
             }
 
-            throw new Exception($"Sem Queue encontrada para a mensagem: {content}");
+            throw new Exception($"Queue not found for this message type: {content}");
         }
 
         private async Task ProcessEvent<T>(string content, BasicDeliverEventArgs @event) where T : Event
@@ -104,7 +108,7 @@ namespace Supply.Receiver
 
             _channel.BasicAck(@event.DeliveryTag, false);
 
-            Console.WriteLine($"Consumed event: {eventMessage.MessageType} - {eventMessage.AggregateId}");
+            _logger.LogInformation($"Event consumed: {eventMessage.MessageType} - {eventMessage.AggregateId}");
         }
     }
 }

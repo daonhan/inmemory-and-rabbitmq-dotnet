@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using Supply.Domain.Core.MessageBroker.Options;
@@ -11,13 +12,16 @@ namespace Supply.Domain.Core.MessageBroker
 {
     public class MessageBrokerBus : IMessageBrokerBus
     {
+        private readonly ILogger<MessageBrokerBus> _logger;
         private readonly string _hostName;
         private readonly string _userName;
         private readonly string _password;
         private IConnection _connection;
 
-        public MessageBrokerBus(IOptions<RabbitMqOptions> rabbitMqOptions)
+        public MessageBrokerBus(IOptions<RabbitMqOptions> rabbitMqOptions, ILogger<MessageBrokerBus> logger)
         {
+            _logger = logger;
+
             _hostName = rabbitMqOptions.Value.HostName;
             _userName = rabbitMqOptions.Value.UserName;
             _password = rabbitMqOptions.Value.Password;
@@ -39,7 +43,7 @@ namespace Supply.Domain.Core.MessageBroker
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Couldn't create connection with RabbitMq: {ex.Message}");
+                _logger.LogError($"Couldn't create connection with RabbitMq: {ex.Message}");
             }
         }
 
@@ -68,7 +72,7 @@ namespace Supply.Domain.Core.MessageBroker
 
                     channel.BasicPublish(exchange: "", routingKey: @event.MessageType, basicProperties: null, body: body);
 
-                    Console.WriteLine($"Published event to RabbitMq: {@event.MessageType} - {@event.AggregateId}");
+                    _logger.LogInformation($"Published event to RabbitMq: {@event.MessageType} - {@event.AggregateId}");
                 }
             }
 
