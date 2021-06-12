@@ -16,23 +16,23 @@ namespace Supply.Infra.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.6")
+                .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Supply.Domain.Entities.Veiculo", b =>
+            modelBuilder.Entity("Supply.Domain.Entities.Vehicle", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Placa")
+                    b.Property<string>("Plate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Placa");
+                        .HasColumnName("Plate");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Veiculos");
+                    b.ToTable("Vehicles");
                 });
 #pragma warning restore 612, 618
         }

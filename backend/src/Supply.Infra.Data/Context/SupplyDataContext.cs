@@ -8,7 +8,7 @@ namespace Supply.Infra.Data.Context
 {
     public class SupplyDataContext : DbContext, IUnitOfWork
     {
-        public DbSet<Veiculo> Veiculos { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
 
         public SupplyDataContext(DbContextOptions<SupplyDataContext> options) : base(options) { }
 
@@ -19,7 +19,7 @@ namespace Supply.Infra.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new VeiculoMapping());
+            modelBuilder.ApplyConfiguration(new VehicleMapping());
 
             base.OnModelCreating(modelBuilder);
         }

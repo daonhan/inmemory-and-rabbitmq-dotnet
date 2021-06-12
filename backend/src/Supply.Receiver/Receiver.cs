@@ -8,7 +8,7 @@ using Serilog;
 using Supply.Domain.Core.Mediator;
 using Supply.Domain.Core.MessageBroker.Options;
 using Supply.Domain.Core.Messaging;
-using Supply.Domain.Events.VeiculoEvents;
+using Supply.Domain.Events.VehicleEvents;
 using Supply.Receiver.Models;
 using System;
 using System.Collections.Generic;
@@ -40,7 +40,7 @@ namespace Supply.Receiver
 
             _queueList = new List<QueueInfo>()
             {
-                new QueueInfo(typeof(VeiculoAddedEvent).Name)
+                new QueueInfo(typeof(VehicleAddedEvent).Name)
             };
 
             _hostName = rabbitMqOptions.Value.HostName;
@@ -89,9 +89,9 @@ namespace Supply.Receiver
         {
             var content = Encoding.UTF8.GetString(@event.Body.ToArray());
 
-            if (content.Contains(typeof(VeiculoAddedEvent).Name))
+            if (content.Contains(typeof(VehicleAddedEvent).Name))
             {
-                await ProcessEvent<VeiculoAddedEvent>(content, @event);
+                await ProcessEvent<VehicleAddedEvent>(content, @event);
                 return;
             }
 

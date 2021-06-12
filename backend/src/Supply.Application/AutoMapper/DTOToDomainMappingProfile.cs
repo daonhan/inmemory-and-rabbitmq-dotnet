@@ -1,7 +1,7 @@
 ﻿using System;
 using AutoMapper;
-using Supply.Application.DTOs.VeiculoDTOs;
-using Supply.Domain.Commands.VeiculoCommands;
+using Supply.Application.DTOs.VehicleDTOs;
+using Supply.Domain.Commands.VehicleCommands;
 
 namespace Supply.Application.AutoMapper
 {
@@ -9,8 +9,8 @@ namespace Supply.Application.AutoMapper
     {
         public DTOToDomainMappingProfile()
         {
-            CreateMap<AddVeiculoDTO, AddVeiculoCommand>()
-                .ConstructUsing(c => new AddVeiculoCommand(c.Placa));
+            CreateMap<AddVehicleDTO, AddVehicleCommand>()
+                .ConstructUsing(c => new AddVehicleCommand(c.Plate));
         }
     }
 }

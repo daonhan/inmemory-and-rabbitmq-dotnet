@@ -48,6 +48,13 @@ namespace Supply.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(configurePolicy =>
+            {
+                configurePolicy.AllowAnyOrigin();
+                configurePolicy.AllowAnyMethod();
+                configurePolicy.AllowAnyHeader();
+            });
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
