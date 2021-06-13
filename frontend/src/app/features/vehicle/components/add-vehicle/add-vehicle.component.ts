@@ -50,9 +50,9 @@ export class AddVehicleComponent implements OnInit {
                 this.close();
             },
             failure => {
-                this.errors = failure.error.errors.Messages;
                 this.submitting = false;
-            }
+                this.errors = failure.errors;
+            },
         )
     }
 

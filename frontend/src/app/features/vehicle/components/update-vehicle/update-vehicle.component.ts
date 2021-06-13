@@ -51,7 +51,7 @@ export class UpdateVehicleComponent implements OnInit {
                 this.close();
             },
             failure => {
-                this.errors = failure.error.errors.Messages;
+                this.errors = failure.errors;
                 this.submitting = false;
             }
         )
