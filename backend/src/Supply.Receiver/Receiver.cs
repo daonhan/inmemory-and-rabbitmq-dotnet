@@ -40,9 +40,9 @@ namespace Supply.Receiver
 
             _queueList = new List<QueueInfo>()
             {
-                new QueueInfo(typeof(VehicleAddedEvent).Name),
-                new QueueInfo(typeof(VehicleUpdatedEvent).Name),
-                new QueueInfo(typeof(VehicleRemovedEvent).Name)
+                new QueueInfo(typeof(VehicleAddedEvent)),
+                new QueueInfo(typeof(VehicleUpdatedEvent)),
+                new QueueInfo(typeof(VehicleRemovedEvent))
             };
 
             _hostName = rabbitMqOptions.Value.HostName;
@@ -91,30 +91,20 @@ namespace Supply.Receiver
         {
             var content = Encoding.UTF8.GetString(@event.Body.ToArray());
 
-            if (content.Contains(typeof(VehicleAddedEvent).Name))
+            foreach (var queueInfo in _queueList)
             {
-                await ProcessEvent<VehicleAddedEvent>(content, @event);
-                return;
-            }
-
-            if (content.Contains(typeof(VehicleUpdatedEvent).Name))
-            {
-                await ProcessEvent<VehicleUpdatedEvent>(content, @event);
-                return;
-            }
-
-            if (content.Contains(typeof(VehicleRemovedEvent).Name))
-            {
-                await ProcessEvent<VehicleRemovedEvent>(content, @event);
-                return;
+                if (content.Contains(queueInfo.Name))
+                {
+                    await ProcessEvent(queueInfo.Type, content, @event);
+                }
             }
 
             throw new Exception($"Queue not found for this message type: {content}");
         }
 
-        private async Task ProcessEvent<T>(string content, BasicDeliverEventArgs @event) where T : Event
+        private async Task ProcessEvent<T>(T instance, string content, BasicDeliverEventArgs @event) where T : Type
         {
-            var message = JsonConvert.DeserializeObject<T>(content);
+            var message = JsonConvert.DeserializeObject(content, instance);
 
             var eventMessage = (Event)message;
 
