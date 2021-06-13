@@ -13,5 +13,6 @@ namespace Supply.Application.Interfaces
 
         Task<ValidationResult> Add(AddVehicleDTO addVehicleDTO);
         Task<ValidationResult> Update(UpdateVehicleDTO updateVehicleDTO);
+        Task<ValidationResult> Remove(Guid id);
     }
 }

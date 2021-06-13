@@ -26,4 +26,8 @@ export class VehicleService {
     public update(vehicle: Vehicle): Observable<any> {
         return this.http.put(`${environment.apiUrl}/vehicles`, vehicle);
     }
+
+    public remove(id: string): Observable<any> {
+        return this.http.delete(`${environment.apiUrl}/vehicles/${id}`);
+    }
 }

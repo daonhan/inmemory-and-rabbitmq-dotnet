@@ -12,5 +12,6 @@ namespace Supply.Caching.Interfaces
 
         void Add(VehicleCache vehicleCache);
         void Update(VehicleCache vehicleCache);
+        void Remove(Guid id);
     }
 }

@@ -35,5 +35,10 @@ namespace Supply.Infra.Data.Repositories
         {
             _supplyCacheContext.VehiclesCache.ReplaceOne(x => x.Id == vehicleCache.Id, vehicleCache);
         }
+
+        public void Remove(Guid id)
+        {
+            _supplyCacheContext.VehiclesCache.DeleteOne(x => x.Id == id.ToString());
+        }
     }
 }

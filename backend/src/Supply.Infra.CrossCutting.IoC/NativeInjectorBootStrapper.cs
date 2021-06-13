@@ -32,10 +32,12 @@ namespace Supply.Infra.CrossCutting.IoC
             // Domain - Commands
             services.AddScoped<IRequestHandler<AddVehicleCommand, ValidationResult>, VehicleCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateVehicleCommand, ValidationResult>, VehicleCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoveVehicleCommand, ValidationResult>, VehicleCommandHandler>();
 
             // Domain - Events
             services.AddScoped<INotificationHandler<VehicleAddedEvent>, VehicleEventHandler>();
             services.AddScoped<INotificationHandler<VehicleUpdatedEvent>, VehicleEventHandler>();
+            services.AddScoped<INotificationHandler<VehicleRemovedEvent>, VehicleEventHandler>();
 
             // Infra - Data
             services.AddScoped<IVehicleRepository, VehicleRepository>();

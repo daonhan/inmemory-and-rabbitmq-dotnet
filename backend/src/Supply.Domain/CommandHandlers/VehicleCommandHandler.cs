@@ -15,7 +15,8 @@ namespace Supply.Domain.CommandHandlers
 {
     public class VehicleCommandHandler : CommandHandler,
         IRequestHandler<AddVehicleCommand, ValidationResult>,
-        IRequestHandler<UpdateVehicleCommand, ValidationResult>
+        IRequestHandler<UpdateVehicleCommand, ValidationResult>,
+        IRequestHandler<RemoveVehicleCommand, ValidationResult>
     {
         private readonly IMessageBrokerBus _messageBrokerBus;
         private readonly IVehicleRepository _vehicleRepository;
@@ -78,6 +79,30 @@ namespace Supply.Domain.CommandHandlers
             if (await Commit(_vehicleRepository.UnitOfWork))
             {
                 await _messageBrokerBus.PublishEvent(new VehicleUpdatedEvent(vehicle.Id));
+            }
+
+            return ValidationResult;
+        }
+
+        public async Task<ValidationResult> Handle(RemoveVehicleCommand request, CancellationToken cancellationToken)
+        {
+            if (!request.IsValid())
+            {
+                return request.ValidationResult;
+            }
+
+            var vehicle = await _vehicleRepository.GetById(request.AggregateId);
+            if (vehicle == null)
+            {
+                AddError(DomainMessages.NotFound.Format("Vehicle").Message);
+                return ValidationResult;
+            }
+
+            _vehicleRepository.Remove(vehicle);
+
+            if (await Commit(_vehicleRepository.UnitOfWork))
+            {
+                await _messageBrokerBus.PublishEvent(new VehicleRemovedEvent(request.AggregateId));
             }
 
             return ValidationResult;

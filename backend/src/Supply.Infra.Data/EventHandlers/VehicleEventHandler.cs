@@ -10,7 +10,8 @@ namespace Supply.Infra.Data.EventHandlers
 {
     public class VehicleEventHandler : 
         INotificationHandler<VehicleAddedEvent>,
-        INotificationHandler<VehicleUpdatedEvent>
+        INotificationHandler<VehicleUpdatedEvent>,
+        INotificationHandler<VehicleRemovedEvent>
     {
         private readonly IVehicleRepository _vehicleRepository;
         private readonly IVehicleCacheRepository _vehicleCacheRepository;
@@ -36,6 +37,11 @@ namespace Supply.Infra.Data.EventHandlers
             var vehicleCache = new VehicleCache(vehicle.Id, vehicle.Plate);
 
             _vehicleCacheRepository.Update(vehicleCache);
+        }
+
+        public async Task Handle(VehicleRemovedEvent notification, CancellationToken cancellationToken)
+        {
+            _vehicleCacheRepository.Remove(notification.AggregateId);
         }
     }
 }

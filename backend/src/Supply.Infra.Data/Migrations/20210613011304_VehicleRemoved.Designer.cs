@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Supply.Infra.Data.Context;
 
 namespace Supply.Infra.Data.Migrations
 {
     [DbContext(typeof(SupplyDataContext))]
-    partial class SupplyDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210613011304_VehicleRemoved")]
+    partial class VehicleRemoved
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

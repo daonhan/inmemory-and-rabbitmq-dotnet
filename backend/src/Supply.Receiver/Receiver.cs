@@ -41,7 +41,8 @@ namespace Supply.Receiver
             _queueList = new List<QueueInfo>()
             {
                 new QueueInfo(typeof(VehicleAddedEvent).Name),
-                new QueueInfo(typeof(VehicleUpdatedEvent).Name)
+                new QueueInfo(typeof(VehicleUpdatedEvent).Name),
+                new QueueInfo(typeof(VehicleRemovedEvent).Name)
             };
 
             _hostName = rabbitMqOptions.Value.HostName;
@@ -99,6 +100,12 @@ namespace Supply.Receiver
             if (content.Contains(typeof(VehicleUpdatedEvent).Name))
             {
                 await ProcessEvent<VehicleUpdatedEvent>(content, @event);
+                return;
+            }
+
+            if (content.Contains(typeof(VehicleRemovedEvent).Name))
+            {
+                await ProcessEvent<VehicleRemovedEvent>(content, @event);
                 return;
             }
 

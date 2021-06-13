@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddVehicleComponent } from './components/add-vehicle/add-vehicle.component';
 import { UpdateVehicleComponent } from './components/update-vehicle/update-vehicle.component';
 import { ViewVehicleComponent } from './components/view-vehicle/view-vehicle.component';
+import { RemoveVehicleComponent } from './components/remove-vehicle/remove-vehicle.component';
 import { VehicleService } from './shared/services/vehicle.service';
 import { VehicleListComponent } from './vehicle-list.component';
 import { VehicleRoutingModule } from './vehicle-routing.module';
@@ -15,7 +16,8 @@ import { VehicleRoutingModule } from './vehicle-routing.module';
         VehicleListComponent,
         AddVehicleComponent,
         UpdateVehicleComponent,
-        ViewVehicleComponent
+        ViewVehicleComponent,
+        RemoveVehicleComponent
     ],
     imports: [
         CommonModule,

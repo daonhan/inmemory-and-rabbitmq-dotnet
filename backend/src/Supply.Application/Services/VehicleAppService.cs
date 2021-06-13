@@ -49,5 +49,10 @@ namespace Supply.Application.Services
         {
             return await _mediator.SendCommand(_mapper.Map<UpdateVehicleCommand>(updateVehicleDTO));
         }
+
+        public async Task<ValidationResult> Remove(Guid id)
+        {
+            return await _mediator.SendCommand(_mapper.Map<RemoveVehicleCommand>(id));
+        }
     }
 }

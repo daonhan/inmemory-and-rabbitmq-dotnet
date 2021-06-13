@@ -17,5 +17,6 @@ namespace Supply.Domain.Interfaces
 
         void Add(Vehicle vehicle);
         void Update(Vehicle vehicle);
+        void Remove(Vehicle vehicle);
     }
 }

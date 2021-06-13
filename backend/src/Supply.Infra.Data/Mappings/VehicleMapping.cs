@@ -15,6 +15,9 @@ namespace Supply.Infra.Data.Mappings
             builder.Property(x => x.Plate)
                 .HasColumnName("Plate")
                 .IsRequired();
+
+            builder.Property(x => x.Removed)
+                .HasColumnName("Removed");
         }
     }
 }

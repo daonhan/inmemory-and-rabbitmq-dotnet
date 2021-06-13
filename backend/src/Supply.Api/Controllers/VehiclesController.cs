@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Supply.Application.DTOs.VehicleDTOs;
 using Supply.Application.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Supply.Api.Controllers
 {
@@ -38,6 +38,12 @@ namespace Supply.Api.Controllers
         public async Task<IActionResult> Update([FromBody] UpdateVehicleDTO updateVehicleDTO)
         {
             return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _vehicleAppService.Update(updateVehicleDTO));
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Remove(Guid id)
+        {
+            return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _vehicleAppService.Remove(id));
         }
     }
 }

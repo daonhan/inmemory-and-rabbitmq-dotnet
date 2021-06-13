@@ -22,19 +22,24 @@ namespace Supply.Infra.Data.Repositories
 
         public IUnitOfWork UnitOfWork => _supplyContext;
 
+        private IQueryable<Vehicle> Query()
+        {
+            return _supplyContext.Vehicles.AsNoTracking().Where(x => !x.Removed);
+        }
+
         public async Task<IEnumerable<Vehicle>> GetAll()
         {
-            return await _supplyContext.Vehicles.AsNoTracking().ToListAsync();
+            return await Query().ToListAsync();
         }
 
         public async Task<IEnumerable<Vehicle>> Search(Expression<Func<Vehicle, bool>> predicate)
         {
-            return await _supplyContext.Vehicles.AsNoTracking().Where(predicate).ToListAsync();
+            return await Query().Where(predicate).ToListAsync();
         }
 
         public async Task<Vehicle> GetById(Guid id)
         {
-            return await _supplyContext.Vehicles.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return await Query().FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public void Add(Vehicle vehicle)
@@ -44,6 +49,12 @@ namespace Supply.Infra.Data.Repositories
 
         public void Update(Vehicle vehicle)
         {
+            _supplyContext.Vehicles.Update(vehicle);
+        }
+
+        public void Remove(Vehicle vehicle)
+        {
+            vehicle.Remove();
             _supplyContext.Vehicles.Update(vehicle);
         }
     }

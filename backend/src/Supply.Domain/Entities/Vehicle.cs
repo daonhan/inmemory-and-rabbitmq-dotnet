@@ -6,6 +6,7 @@ namespace Supply.Domain.Entities
     public class Vehicle : Entity
     {
         public string Plate { get; private set; }
+        public bool Removed { get; private set; }
 
         public Vehicle(string plate)
         {
@@ -20,6 +21,11 @@ namespace Supply.Domain.Entities
         public void UpdatePlate(string plate)
         {
             Plate = plate;
+        }
+
+        public void Remove()
+        {
+            Removed = true;
         }
     }
 }
