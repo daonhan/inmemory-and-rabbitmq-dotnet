@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Update Vehicle</h4>
+</div>
+<div class="modal-body">
+    <div class="alert alert-danger" *ngIf="errors.length > 0">
+        <p *ngFor="let error of errors">{{ error }}</p>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <form [formGroup]="form">
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input class="form-control" id="plate" type="text" placeholder="Plate (required)"
+                            formControlName="plate"
+                            [class.is-valid]="plate && plate.valid"
+                            [class.is-invalid]="plate && plate.touched && plate.invalid"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="ibox-row-padding">
+        <hr class="hr-line" />
+    </div>
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group mr-2" role="group">
+            <button type="button" class="btn btn-success" (click)="confirm()" [disabled]="submitting">Confirm</button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-danger" (click)="close()" [disabled]="submitting">Cancel</button>
+        </div>
+    </div>
+</div>

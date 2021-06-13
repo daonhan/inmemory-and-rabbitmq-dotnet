@@ -9,4 +9,4 @@ import { NavbarComponent } from './navbar.component';
     imports: [CommonModule, RouterModule],
     exports: [NavbarComponent],
 })
-export class NavbarModule {}
+export class NavbarModule { }

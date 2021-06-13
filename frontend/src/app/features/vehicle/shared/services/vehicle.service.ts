@@ -9,7 +9,7 @@ import { Vehicle } from '../models/vehicle';
 
 @Injectable()
 export class VehicleService {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
     public getAll(): Observable<Vehicle[]> {
         return this.http.get<Vehicle[]>(`${environment.apiUrl}/vehicles`);
@@ -19,7 +19,11 @@ export class VehicleService {
         return this.http.get<Vehicle>(`${environment.apiUrl}/vehicles/${id}`);
     }
 
-    public new(vehicle: Vehicle): Observable<any> {
+    public add(vehicle: Vehicle): Observable<any> {
         return this.http.post(`${environment.apiUrl}/vehicles`, vehicle);
+    }
+
+    public update(vehicle: Vehicle): Observable<any> {
+        return this.http.put(`${environment.apiUrl}/vehicles`, vehicle);
     }
 }

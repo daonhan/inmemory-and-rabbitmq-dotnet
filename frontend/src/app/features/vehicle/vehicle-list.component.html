@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>Manage <b>Vehicles</b></h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <a class="btn btn-success" (click)="showAddVehicleModal()">
+                            <span>Add Vehicle</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <td>Plate</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let vehicle of vehicles">
+                        <td>{{ vehicle.id }}</td>
+                        <td>{{ vehicle.plate }}</td>
+                        <td>
+                            <ul class="list-inline m-0">
+                                <li class="list-inline-item">
+                                    <button class="btn btn-primary btn-sm rounded-0"
+                                        (click)="showViewVehicleModal(vehicle)" type="button"><i
+                                            class="fa fa-table"></i></button>
+                                </li>
+                                <li class="list-inline-item">
+                                    <button class="btn btn-success btn-sm rounded-0"
+                                        (click)="showUpdateVehicleModal(vehicle)" type="button"><i
+                                            class="fa fa-edit"></i></button>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

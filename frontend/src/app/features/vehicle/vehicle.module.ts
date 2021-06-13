@@ -3,25 +3,27 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { AddVehicleComponent } from './components/add-vehicle/add-vehicle.component';
+import { UpdateVehicleComponent } from './components/update-vehicle/update-vehicle.component';
+import { ViewVehicleComponent } from './components/view-vehicle/view-vehicle.component';
 import { VehicleService } from './shared/services/vehicle.service';
+import { VehicleListComponent } from './vehicle-list.component';
 import { VehicleRoutingModule } from './vehicle-routing.module';
-import { VehicleAppComponent } from './vehicle.app.component';
-import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
-import { NewVehicleComponent } from './new-vehicle/new-vehicle.component';
 
 @NgModule({
     declarations: [
-        VehicleAppComponent,
         VehicleListComponent,
-        NewVehicleComponent
+        AddVehicleComponent,
+        UpdateVehicleComponent,
+        ViewVehicleComponent
     ],
     imports: [
-        CommonModule, 
-        RouterModule, 
+        CommonModule,
+        RouterModule,
         VehicleRoutingModule,
-        FormsModule, 
+        FormsModule,
         ReactiveFormsModule,
     ],
     providers: [VehicleService]
 })
-export class VehicleModule {}
+export class VehicleModule { }

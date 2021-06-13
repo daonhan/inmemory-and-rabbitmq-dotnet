@@ -10,5 +10,10 @@ namespace Supply.Domain.Core.Messaging.Domain
         {
             Id = Guid.NewGuid();
         }
+
+        protected Entity(Guid id)
+        {
+            Id = id;
+        }
     }
 }

@@ -4,9 +4,11 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { NewVehicleComponent } from '../new-vehicle/new-vehicle.component';
-import { Vehicle } from '../shared/models/vehicle';
-import { VehicleService } from '../shared/services/vehicle.service';
+import { Vehicle } from './shared/models/vehicle';
+import { VehicleService } from './shared/services/vehicle.service';
+import { AddVehicleComponent } from './components/add-vehicle/add-vehicle.component';
+import { UpdateVehicleComponent } from './components/update-vehicle/update-vehicle.component';
+import { ViewVehicleComponent } from './components/view-vehicle/view-vehicle.component';
 
 @Component({
     selector: 'app-vehicle-list',
@@ -18,11 +20,11 @@ export class VehicleListComponent implements OnInit, OnDestroy {
     public timerSubscription!: Subscription;
 
     constructor(
-        private vehicleService: VehicleService, 
+        private vehicleService: VehicleService,
         private modalService: BsModalService
     ) { }
 
-    public ngOnInit(): void { 
+    public ngOnInit(): void {
         this.timerSubscription = timer(0, 5000).pipe(
             map(() => {
                 this.loadVehicles();
@@ -30,8 +32,24 @@ export class VehicleListComponent implements OnInit, OnDestroy {
         ).subscribe();
     }
 
-    public showNewVehicleModal(): void {
-        this.modalService.show(NewVehicleComponent);
+    public showAddVehicleModal(): void {
+        this.modalService.show(AddVehicleComponent);
+    }
+
+    public showUpdateVehicleModal(vehicle: Vehicle): void {
+        this.modalService.show(UpdateVehicleComponent, {
+            initialState: {
+                vehicle: vehicle
+            }
+        });
+    }
+
+    public showViewVehicleModal(vehicle: Vehicle): void {
+        this.modalService.show(ViewVehicleComponent, {
+            initialState: {
+                vehicle: vehicle
+            }
+        });
     }
 
     public loadVehicles(): void {

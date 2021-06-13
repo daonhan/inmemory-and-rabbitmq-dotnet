@@ -8,7 +8,9 @@ using Supply.Domain.Interfaces;
 
 namespace Supply.Infra.Data.EventHandlers
 {
-    public class VehicleEventHandler : INotificationHandler<VehicleAddedEvent>
+    public class VehicleEventHandler : 
+        INotificationHandler<VehicleAddedEvent>,
+        INotificationHandler<VehicleUpdatedEvent>
     {
         private readonly IVehicleRepository _vehicleRepository;
         private readonly IVehicleCacheRepository _vehicleCacheRepository;
@@ -26,6 +28,14 @@ namespace Supply.Infra.Data.EventHandlers
             var vehicleCache = new VehicleCache(vehicle.Id, vehicle.Plate);
 
             _vehicleCacheRepository.Add(vehicleCache);
+        }
+
+        public async Task Handle(VehicleUpdatedEvent notification, CancellationToken cancellationToken)
+        {
+            var vehicle = await _vehicleRepository.GetById(notification.AggregateId);
+            var vehicleCache = new VehicleCache(vehicle.Id, vehicle.Plate);
+
+            _vehicleCacheRepository.Update(vehicleCache);
         }
     }
 }

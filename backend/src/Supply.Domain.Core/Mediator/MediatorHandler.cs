@@ -14,14 +14,14 @@ namespace Supply.Domain.Core.Mediator
             _mediator = mediator;
         }
 
-        public virtual Task<ValidationResult> SendCommand<T>(T command) where T : Command
+        public async Task<ValidationResult> SendCommand<T>(T command) where T : Command
         {
-            return _mediator.Send(command);
+            return await _mediator.Send(command);
         }
 
-        public virtual Task PublishEvent<T>(T @event) where T : Event
+        public async Task PublishEvent<T>(T @event) where T : Event
         {
-            return _mediator.Publish(@event);
+            await _mediator.Publish(@event);
         }
     }
 }

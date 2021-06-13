@@ -4,14 +4,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 
-import { Vehicle } from '../shared/models/vehicle';
-import { VehicleService } from '../shared/services/vehicle.service';
+import { Vehicle } from '../../shared/models/vehicle';
+import { VehicleService } from '../../shared/services/vehicle.service';
 
 @Component({
-    selector: 'app-new-vehicle',
-    templateUrl: './new-vehicle.component.html'
+    selector: 'app-add-vehicle',
+    templateUrl: './add-vehicle.component.html'
 })
-export class NewVehicleComponent implements OnInit {
+export class AddVehicleComponent implements OnInit {
     public form!: FormGroup;
     public vehicle!: Vehicle;
     public errors: string[] = [];
@@ -42,7 +42,7 @@ export class NewVehicleComponent implements OnInit {
 
         this.submitting = true;
         this.vehicle = Object.assign({}, this.vehicle, this.form.value);
-        this.vehicleService.new(this.vehicle).subscribe(
+        this.vehicleService.add(this.vehicle).subscribe(
             () => {
                 this.toastrService.info('Vehicle successfully added, wait some seconds and it will be on list.');
                 this.close();

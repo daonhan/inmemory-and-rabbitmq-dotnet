@@ -30,5 +30,10 @@ namespace Supply.Infra.Data.Repositories
         {
             _supplyCacheContext.VehiclesCache.InsertOne(vehicleCache);
         }
+
+        public void Update(VehicleCache vehicleCache)
+        {
+            _supplyCacheContext.VehiclesCache.ReplaceOne(x => x.Id == vehicleCache.Id, vehicleCache);
+        }
     }
 }

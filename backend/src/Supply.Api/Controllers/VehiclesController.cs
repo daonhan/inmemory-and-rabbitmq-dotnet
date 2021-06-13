@@ -29,9 +29,15 @@ namespace Supply.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] AddVehicleDTO addVehicleDTO)
+        public async Task<IActionResult> Add([FromBody] AddVehicleDTO addVehicleDTO)
         {
             return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _vehicleAppService.Add(addVehicleDTO));
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateVehicleDTO updateVehicleDTO)
+        {
+            return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _vehicleAppService.Update(updateVehicleDTO));
         }
     }
 }

@@ -20,7 +20,7 @@ import { VehicleService } from './features/vehicle/shared/services/vehicle.servi
     BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     ModalModule.forRoot(),
     ToastrModule.forRoot({
