@@ -1,20 +1,5 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+Project made for study propose.
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Backend made with .NET 5, implementing a system that has two database, one for read (Cache) and one for write (Data), so firstly we add/update/remove Vehicle from Data database, after that dispatch a event for RabbitMq that is processed by Receiver, who add/update/remove Vehicle from Cache.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
-
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+Frontend made with Angular 12, have two pages, Home and Vehicles. Vehicles has the list of all the Vehicles and options to add/update/remove a Vehicle, using bootstrap-modal. Also have interceptors to catch errors from backend, ngx-toastr and masks.
