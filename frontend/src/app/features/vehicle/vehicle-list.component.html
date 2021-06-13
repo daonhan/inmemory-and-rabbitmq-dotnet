@@ -13,7 +13,7 @@
                     </div>
                 </div>
             </div>
-            <table class="table">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -24,21 +24,21 @@
                 <tbody>
                     <tr *ngFor="let vehicle of vehicles">
                         <td>{{ vehicle.id }}</td>
-                        <td>{{ vehicle.plate }}</td>
+                        <td>{{ vehicle.plate | mask: plateMask}}</td>
                         <td>
-                            <ul class="list-inline m-0">
+                            <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <button class="btn btn-primary btn-sm rounded-0"
+                                    <button class="btn btn-primary btn-sm"
                                         (click)="showViewVehicleModal(vehicle)" type="button"><i
                                             class="fa fa-table"></i></button>
                                 </li>
                                 <li class="list-inline-item">
-                                    <button class="btn btn-success btn-sm rounded-0"
+                                    <button class="btn btn-success btn-sm"
                                         (click)="showUpdateVehicleModal(vehicle)" type="button"><i
                                             class="fa fa-edit"></i></button>
                                 </li>
                                 <li class="list-inline-item">
-                                    <button class="btn btn-danger btn-sm rounded-0"
+                                    <button class="btn btn-danger btn-sm"
                                         (click)="showRemoveVehicleModal(vehicle)" type="button"><i
                                             class="fa fa-trash"></i></button>
                                 </li>

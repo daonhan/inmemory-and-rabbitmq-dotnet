@@ -4,6 +4,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { Subscription, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { masks } from 'src/app/shared/utils/masks';
 import { Vehicle } from './shared/models/vehicle';
 import { VehicleService } from './shared/services/vehicle.service';
 import { AddVehicleComponent } from './components/add-vehicle/add-vehicle.component';
@@ -19,6 +20,7 @@ import { RemoveVehicleComponent } from './components/remove-vehicle/remove-vehic
 export class VehicleListComponent implements OnInit, OnDestroy {
     public vehicles: Vehicle[] = [];
     public timerSubscription!: Subscription;
+    public plateMask: string = masks.plate;
 
     constructor(
         private vehicleService: VehicleService,

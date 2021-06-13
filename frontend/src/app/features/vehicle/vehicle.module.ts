@@ -10,6 +10,7 @@ import { RemoveVehicleComponent } from './components/remove-vehicle/remove-vehic
 import { VehicleService } from './shared/services/vehicle.service';
 import { VehicleListComponent } from './vehicle-list.component';
 import { VehicleRoutingModule } from './vehicle-routing.module';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import { VehicleRoutingModule } from './vehicle-routing.module';
         VehicleRoutingModule,
         FormsModule,
         ReactiveFormsModule,
+        NgxMaskModule.forChild()
     ],
     providers: [VehicleService]
 })

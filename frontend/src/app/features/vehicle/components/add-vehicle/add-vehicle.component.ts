@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 
+import { masks } from 'src/app/shared/utils/masks';
 import { Vehicle } from '../../shared/models/vehicle';
 import { VehicleService } from '../../shared/services/vehicle.service';
 
@@ -16,6 +17,7 @@ export class AddVehicleComponent implements OnInit {
     public vehicle!: Vehicle;
     public errors: string[] = [];
     public submitting: boolean = false;
+    public plateMask: string = masks.plate;
 
     constructor(
         private vehicleService: VehicleService,

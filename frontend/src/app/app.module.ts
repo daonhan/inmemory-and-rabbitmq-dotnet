@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { NgxMaskModule } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +26,9 @@ import { VehicleService } from './features/vehicle/shared/services/vehicle.servi
     ModalModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-center'
+    }),
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: false
     })
   ],
   providers: [BsModalService, VehicleService],

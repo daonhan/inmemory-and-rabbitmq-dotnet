@@ -13,7 +13,8 @@
                         <input class="form-control" id="plate" type="text" placeholder="Plate (required)"
                             formControlName="plate"
                             [class.is-valid]="plate && plate.valid"
-                            [class.is-invalid]="plate && plate.touched && plate.invalid"/>
+                            [class.is-invalid]="plate && plate.touched && plate.invalid"
+                            [mask]="plateMask"/>
                     </div>
                 </div>
             </form>

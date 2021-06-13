@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">Remove Vehicle {{ vehicle.plate }}</h4>
+    <h4 class="modal-title pull-left">Remove Vehicle {{ vehicle.plate | mask: plateMask}}</h4>
 </div>
 <div class="modal-body">
     <div class="alert alert-danger" *ngIf="errors.length > 0">
